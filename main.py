@@ -107,13 +107,31 @@ def selection_sort(array):
 
 
 def heap_sort(array):
-    print("Heap sort: ")
-    print("------------------")
     if not array:
         print("Empty Array")
     if len(array) == 1:
         print(array)
+    else:
+        build_heap(array)
+        length = len(array)
+        for i in range((length-2)//2,-1,-1):
+            pass
+            heapify(array, i, length-1)
 
+    pass
+
+def build_heap(array):
+    pass
+
+
+def heapify(array,index,size):
+    current = array[index]
+    left = index*2
+    right = index*2+1
+
+    if(left <= len(array-1) )
+
+    if()
     pass
 
 
@@ -127,6 +145,10 @@ def main():
     single_array = [20]
     two_array = [20, 30]
     full_array = [20, 30, 10, 80, 60, 50, 40, 70]
+
+    two_array_heap = [0, 20, 30]
+    full_array_heap = [0, 20, 30, 10, 80, 60, 50, 40, 70]
+
 
     print("There are 6 available options to sort the arrays: ")
     print("")
