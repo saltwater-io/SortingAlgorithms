@@ -1,7 +1,8 @@
 # 6 Sorting Alogrithms
 # Written by Dakota McGuire 3/1/19
+# University of Southern Mississippi - Algorithms
 
-# Code based on psuedocode and explanations by: https://www.youtube.com/watch?v=TzeBrDU-JaY
+# Code loosely based on psuedocode and explanations by: https://www.youtube.com/watch?v=TzeBrDU-JaY
 def merge_sort(array):
     # if not len(array):
     #     print("Empty Array")
@@ -11,44 +12,45 @@ def merge_sort(array):
     #     if array[0] > array[1]:
     #         array[0], array[1] = array[1], array[0]
     # else:
-        if len(array) > 1:
-            middle = len(array) // 2
-            left = array[: middle]
-            right = array[middle :]
-            # Recursive call left side
-            merge_sort(left)
-            # Recursive call right side
-            merge_sort(right)
+    if len(array) > 1:
+        middle = len(array) // 2
+        left = array[: middle]
+        right = array[middle:]
+        # Recursive call left side
+        merge_sort(left)
+        # Recursive call right side
+        merge_sort(right)
 
-            count_left = 0  # left array index
-            count_right = 0  # Right array index
-            count_merge = 0  # Merged array index
+        count_left = 0  # left array index
+        count_right = 0  # Right array index
+        count_merge = 0  # Merged array index
 
-            while count_left < len(left) and count_right < len(right):
-                # Is left element < right element? If so, then move left element into array and increment the count
-                if left[count_left] < right[count_right]:
-                    array[count_merge] = left[count_left]
-                    count_left = count_left + 1
-                # Is the right element < left element? If so move right element into array and index the count
-                elif left[count_left] > right[count_right]:
-                    array[count_merge] = right[count_right]
-                    count_right = count_right + 1
-                count_merge = count_merge + 1
-
-            # If anymore elements on left side, add them to to array
-            while count_left < len(left):
+        while count_left < len(left) and count_right < len(right):
+            # Is left element < right element? If so, then move left element into array and increment the count
+            if left[count_left] < right[count_right]:
                 array[count_merge] = left[count_left]
-                count_merge = count_merge + 1
                 count_left = count_left + 1
-            # If anymore elements on left side, add them to array
-            while count_right < len(right):
+            # Is the right element < left element? If so move right element into array and index the count
+            elif left[count_left] > right[count_right]:
                 array[count_merge] = right[count_right]
-                count_merge = count_merge + 1
                 count_right = count_right + 1
-        # print(temp_array)
-        pass
+            count_merge = count_merge + 1
 
-# Code based on psuedocode found here: https://users.cs.duke.edu/~reif/courses/alglectures/skiena.lectures/lecture5.pdf
+        # If anymore elements on left side, add them to to array
+        while count_left < len(left):
+            array[count_merge] = left[count_left]
+            count_merge = count_merge + 1
+            count_left = count_left + 1
+        # If anymore elements on left side, add them to array
+        while count_right < len(right):
+            array[count_merge] = right[count_right]
+            count_merge = count_merge + 1
+            count_right = count_right + 1
+    # print(temp_array)
+    pass
+
+
+# Code loosely based on psuedocode found here: https://users.cs.duke.edu/~reif/courses/alglectures/skiena.lectures/lecture5.pdf
 def quick_sort(array, low, high):
     # if not len(array):
     #     print("Empty Array")
@@ -68,28 +70,28 @@ def quick_sort(array, low, high):
         quick_sort(array, low, partition_index - 1)
 
 
-# Code based on psuedocode found here: https://users.cs.duke.edu/~reif/courses/alglectures/skiena.lectures/lecture5.pdf
+# Code loosely based on psuedocode found here: https://users.cs.duke.edu/~reif/courses/alglectures/skiena.lectures/lecture5.pdf
 def partition(array, low_bound, high_bound):
-        # Pivot
-        pivot = array[high_bound]
-        # Lower Index
-        index = low_bound - 1
-        # for each number inside range, if its lower than the pivot it increments the index and swaps the values
-        for i in range(low_bound, high_bound):
-            if array[i] < pivot:
-                index += 1
-                array[index], array[i] = array[i], array[index]
-        # Moves pivot to index + 1 and returns it
-        array[index + 1], array[high_bound] = array[high_bound], array[index + 1]
-        return index + 1
+    # Pivot
+    pivot = array[high_bound]
+    # Lower Index
+    index = low_bound - 1
+    # for each number inside range, if its lower than the pivot it increments the index and swaps the values
+    for i in range(low_bound, high_bound):
+        if array[i] < pivot:
+            index += 1
+            array[index], array[i] = array[i], array[index]
+    # Moves pivot to index + 1 and returns it
+    array[index + 1], array[high_bound] = array[high_bound], array[index + 1]
+    return index + 1
 
 
-# Code based on pseudocode found in slides
+# Implementation of insertion sort algorithm
 def insertion_sort(array):
-    if not array:
-        print("Empty Array")
-    if len(array) == 1:
-        print(array)
+    # if not array:
+    #     print("Empty Array")
+    # if len(array) == 1:
+    #     print(array)
     for i in range(1, len(array)):
         key = array[i]
         j = i
@@ -104,69 +106,92 @@ def insertion_sort(array):
 # Implementation of the bubble sort algorithm
 def bubble_sort(array):
     for i in range(len(array)):
+        # Sorted part is at back of array
         for j in range(len(array) - i - 1):
             if array[j] > array[j + 1]:  # If elements are out of order, swap them
-                array[j], array[j + 1] = array[j + 1], array[i]
+                array[j], array[j + 1] = array[j + 1], array[j]
             pass
     pass
     print_array(array)
 
 
 # Implementation of the selection sort algorithm
-
 def selection_sort(array):
     #  checks if array is empty or already sorted (1 element)
-    if not array:
-        print("Empty Array")
-    if len(array) == 1:
-        print(array)
-    else:
-        # Traverse, i = sorted array
-        for i in range(len(array)):
-            min = array[i]  # Used to find minimum value
-            swap = i
-            # Find smallest value to swap
-            for j in range(i + 1, len(array)):
-                if array[j] < min:
-                    min = array[j]
-                    swap = j  # Index to be swapped
+    # if not array:
+    #     print("Empty Array")
+    # if len(array) == 1:
+    #     print(array)
 
-            # Swap values
-            array[i], array[swap] = array[swap], array[i]
+    # Traverse, i = sorted array
+    for i in range(len(array)):
+        min = array[i]  # Used to find minimum value
+        swap = i
+        # Find smallest value to swap
+        for j in range(i + 1, len(array)):
+            if array[j] < min:
+                min = array[j]
+                swap = j  # Index to be swapped
 
-        print_array(array)
-    pass
+        # Swap values
+        array[i], array[swap] = array[swap], array[i]
+
+    print_array(array)
+
+
+pass
 
 
 def heap_sort(array):
-    if not array:
-        print("Empty Array")
-    if len(array) == 1:
-        print(array)
-    else:
-        build_heap(array)
-        length = len(array)
-        for i in range((length - 2) // 2, -1, -1):
-            pass
-            heapify(array, i, length - 1)
+    heap = build_heap(array)
+    length = len(heap)
+    for i in range(length // 2 - 1, 0, -1):
+        heap[0], heap[i] = heap[i], heap[0]
+        sift_down(heap, 0, i)
 
-    pass
-
-
+# Builds initial heap
 def build_heap(array):
+    index = len(array) // 2 - 1
+    end = len(array)
+    for i in range(index, 0, -1):
+        sift_down(array, index, end)
+    return array
+
+
+def sift_down(array, i, end):
+    left_child = 2 * i
+    right_child = 2 * i + 1
+    largest = i
+    not_finished = True
+    while not_finished:
+        if left_child < end and array[left_child] > array[largest]:
+            largest = left_child
+        if right_child < end and array[right_child] > array[largest]:
+            largest = right_child
+
+        # This checks if not changed were made to the largest value
+        # If no more changes needed, loop is sift is finished
+        elif largest == i:
+            not_finished = False
+        #
+        array[i], array[largest] = array[i], array[largest]
+        i = largest
     pass
 
 
-def heapify(array, index, size):
-    pass
-    # current = array[index]
-    # left = index*2
-    # right = index*2+1
-    #
-    # if(left <= len(array-1) )
-    #
-    # if()
-    # pass
+# def leaf_search(array, i, end):
+#     j = i
+#     left_child = j * 2
+#     right_child = left_child + 1
+#
+#     while right
+
+
+def heapify(array):
+    index = len(array) // 2 - 1
+    end = len(array)
+    for i in range(index, 0, -1):
+        sift_down(array, index, end)
 
 
 def print_array(array):
@@ -175,7 +200,6 @@ def print_array(array):
 
 
 def main():
-
     print("There are 6 available options to sort the arrays: ")
     print("")
 
@@ -259,7 +283,7 @@ def main():
             print("Quick sort: ")
             print("------------------")
             quick_sort(null_array, 0, len(null_array))
-            quick_sort(single_array, 0, len(single_array)-1)
+            quick_sort(single_array, 0, len(single_array) - 1)
             quick_sort(two_array, 0, len(two_array) - 1)
             quick_sort(full_array, 0, len(full_array) - 1)
             print_array(null_array)
